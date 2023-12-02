@@ -1,7 +1,6 @@
 const { Tasks } = require("../models/tasks.model");
 
-//get all tasks by user
-
+//Get All Tasks by User
 const getUserTasks = async (req, res) => {
   let { user } = req.query;
 
@@ -18,13 +17,10 @@ const getUserTasks = async (req, res) => {
   }
 };
 
-//get specific task
-
+//Get Specific Task
 const getOneTask = async (req, res) => {
   let { task } = req.params;
-
   task = task.toLowerCase();
-
   try {
     const yourTask = await Tasks.findOne({ task });
     if (yourTask) {
@@ -37,8 +33,7 @@ const getOneTask = async (req, res) => {
   }
 };
 
-//Add new task
-
+//Add New Task
 const addTask = async (req, res) => {
   let { task, time, completed, created_by } = req.body;
   task = task.toLowerCase();
@@ -56,8 +51,7 @@ const addTask = async (req, res) => {
   }
 };
 
-//delete tasks
-
+//Delete Task
 const deleteTask = async (req, res) => {
   let { task } = req.params;
   task = task.toLowerCase();
@@ -69,8 +63,7 @@ const deleteTask = async (req, res) => {
   }
 };
 
-//update tasks
-
+//Update Task
 const updateTask = async (req, res) => {
   let { task } = req.params;
 
