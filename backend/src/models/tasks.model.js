@@ -5,6 +5,14 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  time: {
+    type: String,
+    required: true,
+  },
+  completed: {
+    type: String,
+    required: true,
+  },
   created_by: {
     type: String,
     required: true,

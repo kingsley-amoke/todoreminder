@@ -27,7 +27,7 @@ const Signup = () => {
       .post("http://localhost:3001/api/auth/signup", userData)
       .then((res) => {
         console.log(res);
-        sessionStorage.setItem("user", JSON.stringify(userData));
+        sessionStorage.setItem("user", JSON.stringify(username));
         navigate("/");
       })
       .catch((err) => {

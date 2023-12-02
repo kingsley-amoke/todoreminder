@@ -4,6 +4,7 @@ const { Tasks } = require("../models/tasks.model");
 
 const getUserTasks = async (req, res) => {
   let { user } = req.query;
+
   try {
     if (user) {
       user = user.toLowerCase();
@@ -39,11 +40,16 @@ const getOneTask = async (req, res) => {
 //Add new task
 
 const addTask = async (req, res) => {
-  let { task, created_by } = req.body;
+  let { task, time, completed, created_by } = req.body;
   task = task.toLowerCase();
   created_by = created_by.toLowerCase();
   try {
-    await Tasks.insertMany({ task: task, created_by: created_by });
+    await Tasks.insertMany({
+      task: task,
+      time: time,
+      completed: completed,
+      created_by: created_by,
+    });
     res.status(201).json(`${task} added successfully by ${created_by}`);
   } catch (error) {
     console.log(error);
@@ -68,20 +74,19 @@ const deleteTask = async (req, res) => {
 const updateTask = async (req, res) => {
   let { task } = req.params;
 
-  let newTask = req.body.task;
+  let completed = req.body.completed;
 
   try {
-    newTask = newTask.toLowerCase();
-
+    task = task.toLowerCase();
     await Tasks.updateOne(
       { task: task },
       {
         $set: {
-          task: newTask,
+          completed: completed,
         },
       }
     );
-    res.status(200).json(`${task} Task updated to ${newTask} successfully`);
+    res.status(200).json("Task updated successfully");
   } catch (error) {
     console.log(error);
   }

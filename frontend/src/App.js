@@ -14,9 +14,11 @@ const App = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    let username = JSON.parse(sessionStorage.getItem("user"));
-    if (!username) {
+    let user = JSON.parse(sessionStorage.getItem("user"));
+    if (!user) {
       navigate("/login");
+    } else {
+      setUsername(user);
     }
   }, []);
   return (

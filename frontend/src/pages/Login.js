@@ -27,7 +27,7 @@ const Login = () => {
             let data = res.data;
             setUsername(data.user.username);
 
-            sessionStorage.setItem("user", JSON.stringify(loginData));
+            sessionStorage.setItem("user", JSON.stringify(data.user.username));
             navigate("/");
           })
           .catch((err) => {
